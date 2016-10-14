@@ -44,16 +44,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="T4Extend\DbHelper.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbHelper.ttinclude</DependentUpon>
-    </Compile>
-    <Compile Include="T4Extend\GenerationHelper.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GenerationHelper.ttinclude</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,16 +56,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="T4Extend\DbHelper.ttinclude">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbHelper.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="T4Extend\GenerationHelper.ttinclude">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GenerationHelper.cs</LastGenOutput>
-    </None>
     <Content Include="Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Models.cs</LastGenOutput>
