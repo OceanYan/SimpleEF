@@ -40,7 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseDal.cs" />
-    <Compile Include="IDal.cs" />
+    <Compile Include="IDbPoolExtension.cs">
+      <DependentUpon>IDbPoolExtension.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="IDal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IDal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IDbPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +65,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IDbPoolExtension.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IDbPoolExtension.cs</LastGenOutput>
+    </Content>
+    <Content Include="IDal.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IDal.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

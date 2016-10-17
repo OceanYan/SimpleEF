@@ -11,6 +11,27 @@ namespace SimpleEntityFramework.Common.ModelsHelper
     public class GenerationHelper
     {
         /// <summary>
+        /// 获取实体的类型集合
+        /// </summary>
+        /// <param name="modelsAssemblyPath"></param>
+        /// <param name="superAssemblyPath"></param>
+        /// <param name="superName"></param>
+        /// <returns></returns>
+        public static List<Type> GetModels(string modelsAssemblyPath, string superAssemblyPath, string superName)
+        {
+            var modelsAss = Assembly.LoadFrom(modelsAssemblyPath);
+            var superAss = Assembly.LoadFrom(superAssemblyPath);
+            var superType = superAss.GetType(superName);
+            return modelsAss.GetTypes().Where(type =>
+                type.BaseType != null && type.BaseType == superType
+                ).ToList();
+        }
+
+        #region 1 实体生成操作
+
+        #region 1.0 获取实体生成数据 -public List<ModelGenerateData> GetModelsGeneratData
+
+        /// <summary>
         ///     获取生成数据
         /// </summary>
         /// <param name="connectionStr">连接字符串</param>
@@ -21,11 +42,12 @@ namespace SimpleEntityFramework.Common.ModelsHelper
         /// <param name="parentAssemblyName">父类的解决方案名称</param>
         /// <param name="parentName">父类名称</param>
         /// <returns></returns>
-        public static List<GenerateData> GetGeneratData(string connectionStr, string databaseName,string modelsProPath,
+        public static List<ModelGenerateData> GetModelsGeneratData(string connectionStr, string databaseName,
+            string modelsProPath,
             string tableNames = "", string projectPath = "",
             string parentAssemblyName = "", string parentName = "")
         {
-            var ret = new List<GenerateData>();
+            var ret = new List<ModelGenerateData>();
             //获取父类属性信息 
             var parentPropeties = GetSuperPropertyInfos(projectPath, parentAssemblyName, parentName);
             //获取数据库字段属性
@@ -45,6 +67,10 @@ namespace SimpleEntityFramework.Common.ModelsHelper
             return ret;
         }
 
+        #endregion
+
+        #region 1.1 获取父类属性 - private List<PropertyInfo> GetSuperProperty(Type superType)
+
         /// <summary>
         ///     获取父类属性
         /// </summary>
@@ -56,6 +82,10 @@ namespace SimpleEntityFramework.Common.ModelsHelper
                 return new List<PropertyInfo>();
             return superType.GetProperties().ToList();
         }
+
+        #endregion
+
+        #region 1.2 获取父类属性 - private List<PropertyInfo> GetSuperPropertyInfos(string ,string ,string)
 
         /// <summary>
         ///     获取父类属性
@@ -81,6 +111,9 @@ namespace SimpleEntityFramework.Common.ModelsHelper
             return propertyInfos;
         }
 
+        #endregion
+
+        #region 1.3 把原始数据拼装程GeneratData - private ModelGenerateData PackingSourceToGenerateData
 
         /// <summary>
         ///     把原始数据拼装程GeneratData
@@ -90,11 +123,10 @@ namespace SimpleEntityFramework.Common.ModelsHelper
         /// <param name="parentName">父类名称</param>
         /// <param name="parentPropeties">父类属性</param>
         /// <returns></returns>
-        private static GenerateData PackingSourceToGenerateData(string tableName, List<DbColumn> columns,
-            string parentName,
-            List<PropertyInfo> parentPropeties)
+        private static ModelGenerateData PackingSourceToGenerateData(string tableName, List<DbColumn> columns,
+            string parentName, List<PropertyInfo> parentPropeties)
         {
-            var generateData = new GenerateData();
+            var generateData = new ModelGenerateData();
             //先不不判断父类属性是否为空，可能存在父类只为约束使用，没有属性
             if (!string.IsNullOrEmpty(parentName))
             {
@@ -120,12 +152,18 @@ namespace SimpleEntityFramework.Common.ModelsHelper
             generateData.TbColumns = columns;
             return generateData;
         }
+
+        #endregion
+
+        #endregion
     }
+
+    #region 生成类数据实体 - ModelGenerateData
 
     /// <summary>
     ///     生成类数据实体
     /// </summary>
-    public class GenerateData
+    public class ModelGenerateData
     {
         /// <summary>
         ///     表名
@@ -147,4 +185,6 @@ namespace SimpleEntityFramework.Common.ModelsHelper
         /// </summary>
         public string ParentName { get; set; }
     }
+
+    #endregion
 }

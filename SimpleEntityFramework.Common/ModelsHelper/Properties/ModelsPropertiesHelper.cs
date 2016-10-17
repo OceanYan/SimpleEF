@@ -21,7 +21,7 @@ namespace SimpleEntityFramework.Common.ModelsHelper
         /// </summary>
         /// <param name="path"></param>
         /// <param name="generateDatas"></param>
-        public static void RecorderModelsProperties(string path, List<GenerateData> generateDatas)
+        public static void RecorderModelsProperties(string path, List<ModelGenerateData> generateDatas)
         {
             //Path.Combine(path, "ModelsPropertis.xml");
             var document = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
@@ -36,7 +36,7 @@ namespace SimpleEntityFramework.Common.ModelsHelper
         /// </summary>
         /// <param name="innerProEle"></param>
         /// <param name="generateDatas"></param>
-        private static void GenerateInnerProperties(XElement innerProEle, List<GenerateData> generateDatas)
+        private static void GenerateInnerProperties(XElement innerProEle, List<ModelGenerateData> generateDatas)
         {
             generateDatas.ForEach(data =>
             {
