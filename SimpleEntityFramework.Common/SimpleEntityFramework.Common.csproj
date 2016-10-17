@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="InstacneConstructHelper.cs" />
+    <Compile Include="ModelsHelper\Properties\InnerPropertyEntity.cs" />
+    <Compile Include="ModelsHelper\Properties\ModelsPropertiesHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelsHelper\DbHelper.cs" />
     <Compile Include="ModelsHelper\GenerationHelper.cs" />

@@ -25,8 +25,9 @@ using System;
 namespace <#= Config.NameSpace #>
 {    
 <# 
-	string projectPath = Path.Combine(Host.ResolveAssemblyReference("$(ProjectDir)"),"bin","debug","SimpleEntityFramework.ModelBase"+".dll"); 
-	List<GenerateData> GenData = GenerationHelper.GetGeneratData(Config.ConnectionString,Config.DbDatabase,"",projectPath,"SimpleEntityFramework.ModelBase" ,"ModelBase");
+	string projectiDir = Host.ResolveAssemblyReference("$(ProjectDir)");
+	string superPath = Path.Combine(projectiDir,"bin","debug","SimpleEntityFramework.ModelBase"+".dll"); 
+	List<GenerateData> GenData = GenerationHelper.GetGeneratData(Config.ConnectionString,Config.DbDatabase,projectiDir,"",superPath,"SimpleEntityFramework.ModelBase" ,"ModelBase");
 	//List<GenerateData> GenData = GenerationHelper.GetGeneratData(Config.ConnectionString,Config.DbDatabase);
 	foreach(GenerateData tb in GenData) 
 	{
