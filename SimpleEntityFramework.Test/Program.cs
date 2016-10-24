@@ -5,7 +5,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using SimpleEntityFramework.Models;
 
 namespace SimpleEntityFramework.Test
 {
@@ -15,10 +18,44 @@ namespace SimpleEntityFramework.Test
             "data source=.;initial catalog=AdvancedSeven;user id=sa;pwd=ch902819;";
 
         public static readonly string DbDatabase = "AdvancedSeven";
-
+        static int? i;
         private static void Main(string[] args)
         {
-            var list =  GenerationHelper.GetGeneratData(ConnectionString, DbDatabase, "","SimpleEntityFramework.ModelBase", "ModelBase");
+            //var list =  GenerationHelper.GetGeneratData(ConnectionString, DbDatabase, "","SimpleEntityFramework.ModelBase", "ModelBase");
+            //Common.ModelsHelper.ModelsPropertiesHelper.SaveTest();
+
+            //Console.WriteLine((i == null).ToString());
+            //var list = Common.ModelsHelper.ModelsPropertiesHelper.GetEntityProperties(
+            //     @"D:\Program Files\Microsoft Visual Studio 12.0\Common7\IDE", "User");
+            // foreach (var innerPropertyEntity in list)
+            // {
+            //     Console.WriteLine(innerPropertyEntity.Name);
+            // }
+            // Console.ReadKey();
+
+            //Console.WriteLine(GetConditionExpression<User>());
+           // var ass = Assembly.Load("SimpleEntityFramework.Models");
+            var a = Models.ModelsPropertiesHelper.GetPropertiesRoot();
+            var list = Common.ModelsHelper.ModelsPropertiesHelperExt.GetEntityProperties(a, "User");
+        }
+
+        public static Expression<Func<T, bool>> GetConditionExpression<T>(string[] options, string fieldName)
+        {
+            ParameterExpression left = Expression.Parameter(typeof(T), "c");//c=>
+            Expression expression = Expression.Constant(false);
+            foreach (var optionName in options)
+            {
+                Expression right = Expression.Call
+                       (
+                          Expression.Property(left, typeof(T).GetProperty(fieldName)),  //c.DataSourceName
+                          typeof(string).GetMethod("Contains", new Type[] { typeof(string) }),// 反射使用.Contains()方法                         
+                          Expression.Constant(optionName)           // .Contains(optionName)
+                       );
+                expression = Expression.Or(right, expression);//c.DataSourceName.contain("") || c.DataSourceName.contain("") 
+            }
+            Expression<Func<T, bool>> finalExpression
+                = Expression.Lambda<Func<T, bool>>(expression, new ParameterExpression[] { left });
+            return finalExpression;
         }
 
 
@@ -30,7 +67,7 @@ namespace SimpleEntityFramework.Test
         /// <returns></returns>
         private static object CheckType(object value, Type conversionType)
         {
-            if (conversionType.IsGenericType && conversionType.GetGenericTypeDefinition().Equals(typeof (Nullable<>)))
+            if (conversionType.IsGenericType && conversionType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
             {
                 if (value == null)
                     return null;
@@ -65,7 +102,7 @@ namespace SimpleEntityFramework.Test
         /// <param name="parentAssemblyName">父类的解决方案名称</param>
         /// <param name="parentName">父类名称</param>
         /// <returns></returns>
-        public static  List<GenerateData> GetGeneratData(string connectionStr, string databaseName,
+        public static List<GenerateData> GetGeneratData(string connectionStr, string databaseName,
             string tableNames = "", string parentAssemblyName = "",
             string parentName = "")
         {
@@ -237,7 +274,7 @@ namespace SimpleEntityFramework.Test
                                     select
                                     colm.column_id ColumnID,
                                     CAST(CASE WHEN indexCTE.column_id IS NULL THEN 0 ELSE 1 END AS BIT) IsPrimaryKey,
-                                    colm.name ColumnName,
+                                    colm.name Name,
                                     systype.name ColumnType,
                                     colm.is_identity IsIdentity,
                                     colm.is_nullable IsNullable,
@@ -271,7 +308,7 @@ namespace SimpleEntityFramework.Test
             {
                 ColumnID = row.Field<int>("ColumnID"),
                 IsPrimaryKey = row.Field<bool>("IsPrimaryKey"),
-                ColumnName = row.Field<string>("ColumnName"),
+                ColumnName = row.Field<string>("Name"),
                 ColumnType = row.Field<string>("ColumnType"),
                 IsIdentity = row.Field<bool>("IsIdentity"),
                 IsNullable = row.Field<bool>("IsNullable"),
@@ -531,104 +568,104 @@ namespace SimpleEntityFramework.Test
         {
             if (string.IsNullOrEmpty(dbtype)) return Type.Missing.GetType();
             dbtype = dbtype.ToLower();
-            var commonType = typeof (object);
+            var commonType = typeof(object);
             switch (dbtype)
             {
                 case "bigint":
-                    commonType = typeof (long);
+                    commonType = typeof(long);
                     break;
                 case "binary":
-                    commonType = typeof (byte[]);
+                    commonType = typeof(byte[]);
                     break;
                 case "bit":
-                    commonType = typeof (bool);
+                    commonType = typeof(bool);
                     break;
                 case "char":
-                    commonType = typeof (string);
+                    commonType = typeof(string);
                     break;
                 case "date":
-                    commonType = typeof (DateTime);
+                    commonType = typeof(DateTime);
                     break;
                 case "datetime":
-                    commonType = typeof (DateTime);
+                    commonType = typeof(DateTime);
                     break;
                 case "datetime2":
-                    commonType = typeof (DateTime);
+                    commonType = typeof(DateTime);
                     break;
                 case "datetimeoffset":
-                    commonType = typeof (DateTimeOffset);
+                    commonType = typeof(DateTimeOffset);
                     break;
                 case "decimal":
-                    commonType = typeof (decimal);
+                    commonType = typeof(decimal);
                     break;
                 case "float":
-                    commonType = typeof (double);
+                    commonType = typeof(double);
                     break;
                 case "image":
-                    commonType = typeof (byte[]);
+                    commonType = typeof(byte[]);
                     break;
                 case "int":
-                    commonType = typeof (int);
+                    commonType = typeof(int);
                     break;
                 case "money":
-                    commonType = typeof (decimal);
+                    commonType = typeof(decimal);
                     break;
                 case "nchar":
-                    commonType = typeof (string);
+                    commonType = typeof(string);
                     break;
                 case "ntext":
-                    commonType = typeof (string);
+                    commonType = typeof(string);
                     break;
                 case "numeric":
-                    commonType = typeof (decimal);
+                    commonType = typeof(decimal);
                     break;
                 case "nvarchar":
-                    commonType = typeof (string);
+                    commonType = typeof(string);
                     break;
                 case "real":
-                    commonType = typeof (float);
+                    commonType = typeof(float);
                     break;
                 case "smalldatetime":
-                    commonType = typeof (DateTime);
+                    commonType = typeof(DateTime);
                     break;
                 case "smallint":
-                    commonType = typeof (short);
+                    commonType = typeof(short);
                     break;
                 case "smallmoney":
-                    commonType = typeof (decimal);
+                    commonType = typeof(decimal);
                     break;
                 case "sql_variant":
-                    commonType = typeof (object);
+                    commonType = typeof(object);
                     break;
                 case "sysname":
-                    commonType = typeof (object);
+                    commonType = typeof(object);
                     break;
                 case "text":
-                    commonType = typeof (string);
+                    commonType = typeof(string);
                     break;
                 case "time":
-                    commonType = typeof (TimeSpan);
+                    commonType = typeof(TimeSpan);
                     break;
                 case "timestamp":
-                    commonType = typeof (byte[]);
+                    commonType = typeof(byte[]);
                     break;
                 case "tinyint":
-                    commonType = typeof (byte);
+                    commonType = typeof(byte);
                     break;
                 case "uniqueidentifier":
-                    commonType = typeof (Guid);
+                    commonType = typeof(Guid);
                     break;
                 case "varbinary":
-                    commonType = typeof (byte[]);
+                    commonType = typeof(byte[]);
                     break;
                 case "varchar":
-                    commonType = typeof (string);
+                    commonType = typeof(string);
                     break;
                 case "xml":
-                    commonType = typeof (string);
+                    commonType = typeof(string);
                     break;
                 default:
-                    commonType = typeof (object);
+                    commonType = typeof(object);
                     break;
             }
             return commonType;

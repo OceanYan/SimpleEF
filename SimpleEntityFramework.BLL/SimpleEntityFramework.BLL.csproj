@@ -39,7 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseBll.cs" />
+    <Compile Include="BaseBLL.cs" />
+    <Compile Include="BLL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLLSession.cs" />
+    <Compile Include="BLLSessionExtension.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BLLSessionExtension.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +61,10 @@
     <ProjectReference Include="..\SimpleEntityFramework.DALSqlServer\SimpleEntityFramework.DALSqlServer.csproj">
       <Project>{e5da5772-2086-4b05-9818-515c4fa9dd30}</Project>
       <Name>SimpleEntityFramework.DALSqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleEntityFramework.IBLL\SimpleEntityFramework.IBLL.csproj">
+      <Project>{6fc47035-c207-4bbf-aa9e-dcee4cb49765}</Project>
+      <Name>SimpleEntityFramework.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleEntityFramework.IDAL\SimpleEntityFramework.IDAL.csproj">
       <Project>{c5a688b2-1dd1-4bfe-866d-949b6e21063c}</Project>
@@ -63,6 +78,19 @@
       <Project>{17e79a9e-091d-4185-a092-2769c9c7bfd1}</Project>
       <Name>SimpleEntityFramework.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BLL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BLL.cs</LastGenOutput>
+    </Content>
+    <Content Include="BLLSessionExtension.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BLLSessionExtension.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

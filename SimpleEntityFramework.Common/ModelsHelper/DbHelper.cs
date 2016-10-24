@@ -65,7 +65,7 @@ namespace SimpleEntityFramework.Common.ModelsHelper
                                     select
                                     colm.column_id ColumnID,
                                     CAST(CASE WHEN indexCTE.column_id IS NULL THEN 0 ELSE 1 END AS BIT) IsPrimaryKey,
-                                    colm.name ColumnName,
+                                    colm.name Name,
                                     systype.name ColumnType,
                                     colm.is_identity IsIdentity,
                                     colm.is_nullable IsNullable,
@@ -94,7 +94,7 @@ namespace SimpleEntityFramework.Common.ModelsHelper
             {
                 ColumnID = row.Field<int>("ColumnID"),
                 IsPrimaryKey = row.Field<bool>("IsPrimaryKey"),
-                ColumnName = row.Field<string>("ColumnName"),
+                ColumnName = row.Field<string>("Name"),
                 ColumnType = row.Field<string>("ColumnType"),
                 IsIdentity = row.Field<bool>("IsIdentity"),
                 IsNullable = row.Field<bool>("IsNullable"),

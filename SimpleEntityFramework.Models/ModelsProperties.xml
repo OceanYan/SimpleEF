@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Entity DataBase Tables Relation -->
+<EDTR>
+	<EntityProperties>
+		<Entity Name="Company">
+			<Field Name="Id" IsPrimaryKey="True" IsIdentity="True" IsNullable="False"/>
+			<Field Name="Name" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="CreateTime" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="CreatorId" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="LastModifierId" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="LastModifyTime" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+		</Entity>
+		<Entity Name="User">
+			<Field Name="Id" IsPrimaryKey="True" IsIdentity="True" IsNullable="False"/>
+			<Field Name="Name" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="Account" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="Password" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="Email" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="Mobile" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="CompanyId" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="CompanyName" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="State" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="UserType" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="LastLoginTime" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="CreateTime" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="CreatorId" IsPrimaryKey="False" IsIdentity="False" IsNullable="False"/>
+			<Field Name="LastModifierId" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+			<Field Name="LastModifyTime" IsPrimaryKey="False" IsIdentity="False" IsNullable="True"/>
+		</Entity>
+	</EntityProperties>
+</EDTR>

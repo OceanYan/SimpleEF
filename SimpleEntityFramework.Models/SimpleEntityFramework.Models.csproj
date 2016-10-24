@@ -39,14 +39,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Manager.ttinclude</DependentUpon>
+    </Compile>
     <Compile Include="Models.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelsPropertiesHelper.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimpleEntityFramework.Common\SimpleEntityFramework.Common.csproj">
+      <Project>{315b9b24-926c-41bd-8ab0-dfb79d5f2f5b}</Project>
+      <Name>SimpleEntityFramework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleEntityFramework.ModelBase\SimpleEntityFramework.ModelBase.csproj">
       <Project>{39bfc03c-ef91-4dbc-a05b-58c856b20be6}</Project>
       <Name>SimpleEntityFramework.ModelBase</Name>
@@ -56,6 +68,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ModelsProperties.xml">
+      <DependentUpon>Models.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Manager.ttinclude">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Manager.cs</LastGenOutput>
+    </None>
     <Content Include="Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Models.cs</LastGenOutput>

@@ -62,7 +62,7 @@ namespace SimpleEntityFramework.Common.ModelsHelper
                         : string.Format("{0}.{1}", parentAssemblyName, parentName), parentPropeties));
             }
             //生成属性配置文件
-            ModelsPropertiesHelper.RecorderModelsProperties(modelsProPath, ret);
+            //ModelsPropertiesHelper.RecorderModelsProperties(modelsProPath, ret);
 
             return ret;
         }

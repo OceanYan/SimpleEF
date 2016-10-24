@@ -9,12 +9,12 @@ namespace SimpleEntityFramework.Common.ModelsHelper
     /// <summary>
     /// 内部属性实体
     /// </summary>
-    public class InnerPropertyEntity
+    public class EntityPropertiesEntity
     {
         /// <summary>
         /// 列名
         /// </summary>
-        public string ColumnName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 是否为主键  

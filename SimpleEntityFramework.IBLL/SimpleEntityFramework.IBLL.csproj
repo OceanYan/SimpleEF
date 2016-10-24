@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0105247C-121B-4A36-90D5-7F9DC928298D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{6FC47035-C207-4BBF-AA9E-DCEE4CB49765}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleEntityFramework.Client</RootNamespace>
-    <AssemblyName>SimpleEntityFramework.Client</AssemblyName>
+    <RootNamespace>SimpleEntityFramework.IBLL</RootNamespace>
+    <AssemblyName>SimpleEntityFramework.IBLL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,24 +39,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="IBaseBLL.cs" />
+    <Compile Include="IBLL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IBLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IBLLSession.cs" />
+    <Compile Include="IBLLSessionExtension.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IBLLSessionExtension.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleEntityFramework.BLL\SimpleEntityFramework.BLL.csproj">
-      <Project>{26797aaa-ae33-4987-9e72-660d83c3872f}</Project>
-      <Name>SimpleEntityFramework.BLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SimpleEntityFramework.Common\SimpleEntityFramework.Common.csproj">
       <Project>{315b9b24-926c-41bd-8ab0-dfb79d5f2f5b}</Project>
       <Name>SimpleEntityFramework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimpleEntityFramework.IBLL\SimpleEntityFramework.IBLL.csproj">
-      <Project>{6fc47035-c207-4bbf-aa9e-dcee4cb49765}</Project>
-      <Name>SimpleEntityFramework.IBLL</Name>
+    <ProjectReference Include="..\SimpleEntityFramework.IDAL\SimpleEntityFramework.IDAL.csproj">
+      <Project>{c5a688b2-1dd1-4bfe-866d-949b6e21063c}</Project>
+      <Name>SimpleEntityFramework.IDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleEntityFramework.ModelBase\SimpleEntityFramework.ModelBase.csproj">
       <Project>{39bfc03c-ef91-4dbc-a05b-58c856b20be6}</Project>
@@ -68,6 +70,19 @@
       <Project>{17e79a9e-091d-4185-a092-2769c9c7bfd1}</Project>
       <Name>SimpleEntityFramework.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IBLL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IBLL.cs</LastGenOutput>
+    </Content>
+    <Content Include="IBLLSessionExtension.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IBLLSessionExtension.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

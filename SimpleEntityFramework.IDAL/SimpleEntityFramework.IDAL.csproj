@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,20 +41,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseDal.cs" />
-    <Compile Include="IDbPoolExtension.cs">
-      <DependentUpon>IDbPoolExtension.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="IDal.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IDal.tt</DependentUpon>
     </Compile>
-    <Compile Include="IDbPool.cs" />
+    <Compile Include="IDBSession.cs" />
+    <Compile Include="IDBSessionExtension.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IDBSessionExtension.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IDBSessionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimpleEntityFramework.Common\SimpleEntityFramework.Common.csproj">
+      <Project>{315b9b24-926c-41bd-8ab0-dfb79d5f2f5b}</Project>
+      <Name>SimpleEntityFramework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleEntityFramework.ModelBase\SimpleEntityFramework.ModelBase.csproj">
       <Project>{39bfc03c-ef91-4dbc-a05b-58c856b20be6}</Project>
       <Name>SimpleEntityFramework.ModelBase</Name>
@@ -67,13 +73,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IDbPoolExtension.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IDbPoolExtension.cs</LastGenOutput>
-    </Content>
     <Content Include="IDal.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IDal.cs</LastGenOutput>
+    </Content>
+    <Content Include="IDBSessionExtension.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IDBSessionExtension.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

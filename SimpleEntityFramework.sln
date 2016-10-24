@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEntityFramework.DALSq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEntityFramework.BLL", "SimpleEntityFramework.BLL\SimpleEntityFramework.BLL.csproj", "{26797AAA-AE33-4987-9E72-660D83C3872F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEntityFramework.IBLL", "SimpleEntityFramework.IBLL\SimpleEntityFramework.IBLL.csproj", "{6FC47035-C207-4BBF-AA9E-DCEE4CB49765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{26797AAA-AE33-4987-9E72-660D83C3872F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26797AAA-AE33-4987-9E72-660D83C3872F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26797AAA-AE33-4987-9E72-660D83C3872F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FC47035-C207-4BBF-AA9E-DCEE4CB49765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC47035-C207-4BBF-AA9E-DCEE4CB49765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC47035-C207-4BBF-AA9E-DCEE4CB49765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC47035-C207-4BBF-AA9E-DCEE4CB49765}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,5 +89,6 @@ Global
 		{C5A688B2-1DD1-4BFE-866D-949B6E21063C} = {4F69FC43-DA9E-4E70-A2E8-693EBBE84787}
 		{E5DA5772-2086-4B05-9818-515C4FA9DD30} = {4F69FC43-DA9E-4E70-A2E8-693EBBE84787}
 		{26797AAA-AE33-4987-9E72-660D83C3872F} = {149B0A45-BF26-4A6C-A461-A93CD89CD80F}
+		{6FC47035-C207-4BBF-AA9E-DCEE4CB49765} = {149B0A45-BF26-4A6C-A461-A93CD89CD80F}
 	EndGlobalSection
 EndGlobal
